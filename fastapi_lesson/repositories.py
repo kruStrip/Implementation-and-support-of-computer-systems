@@ -2,7 +2,7 @@ import os
 import sqlite3
 from datetime import UTC, datetime
 
-from models import NoteOut
+from .models import NoteOut
 
 DB_PATH = os.getenv("DB_PATH", os.path.join(os.path.dirname(__file__), "data", "notes.db"))
 os.makedirs(os.path.dirname(DB_PATH), exist_ok=True)
