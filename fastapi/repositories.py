@@ -51,3 +51,15 @@ class NoteRepository:
 
         finally:
             conn.close()
+
+    def get(self, note_id: int) -> NoteOut | None:
+        conn = get_conn()
+        try:
+            cur = conn.cursor()
+            cur.execute("SELECT * FROM notes WHERE id = ?", (note_id,))
+            row = cur.fetchone()
+            if not row:
+                return None
+            return NoteOut(**row)
+        finally:
+            conn.close()
